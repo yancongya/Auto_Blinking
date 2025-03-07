@@ -23,16 +23,6 @@
 | ✅ 复选框 | 位置随机 | 开启 | 启用/禁用位置随机 |
 | ✅ 复选框 | 旋转 | 开启 | 启用/禁用自动旋转 |
 
-## 💻 使用示例
-```javascript
-// 典型参数设置
-try {
-    effect("放大倍数").setValue(1.5);
-    effect("旋转速度").setValue(180);
-} catch(e) {
-    $.writeln("参数设置错误: " + e);
-}
-```
 
 ## 🛠 技术特性
 - 🧩 智能表达式系统
@@ -44,8 +34,3 @@ try {
 1. 需保持Controller层存在
 2. 建议在应用表达式前保存工程
 3. 旋转速度参数需配合复选框使用
-
-## 🔗 相关资源
-- [表达式开发文档](https://ae-expressions.docs)
-- [AE脚本开发指南](https://aescripts.com/learn/)
-```
