@@ -153,6 +153,15 @@ function createController() {
         if (seedEffect && seedEffect.property("滑块")) {
             seedEffect.property("滑块").expression = "effect(\"种子控制\")(1).value + transform.position[0];";
         }
+        
+        // 为"位置随机幅度"添加缩放绑定表达式
+        var ampEffect = effects.property("位置随机幅度");
+        if (ampEffect && ampEffect.property("滑块")) {
+            ampEffect.property("滑块").expression = "// 通过Controller的缩放宽度控制位置随机幅度\n" +
+                                                  "var defaultValue = 5; // 默认值\n" +
+                                                  "var scaleX = transform.scale[0] / 100; // 获取X轴缩放比例\n" +
+                                                  "defaultValue * scaleX; // 根据缩放比例调整幅度值";
+        }
     } catch (e) {
         // 出错时仅输出日志，不弹出提示框
         $.writeln("设置表达式时出错：" + e.toString());
