@@ -47,6 +47,19 @@ if (app.project.activeItem && app.project.activeItem instanceof CompItem && app.
                      "   value[1] + random(-h/2, h/2)]\n" +
                      "}";
         layer.transform.position.expression = posExpr;
+        
+        // 添加旋转表达式
+        var rotExpr = "var enable = thisComp.layer(\"Controller\").effect(\"开启旋转\")(\"复选框\");\n" +
+                     "if (enable == 0) {\n" +
+                     "  value;\n" +
+                     "} else {\n" +
+                     "  var speed = thisComp.layer(\"Controller\").effect(\"旋转速度\")(\"滑块\");\n" +
+                     "  var sl = thisComp.layer(\"Controller\").effect(\"种子控制\")(\"滑块\") * 1000;\n" +
+                     "  seedRandom(sl + index, true);\n" +
+                     "  var offset = random(0, 360);\n" +
+                     "  value + time * speed + offset;\n" +
+                     "}";
+        layer.transform.rotation.expression = rotExpr;
     }
 }
 
@@ -149,7 +162,7 @@ function createController() {
     // 去掉成功后的弹窗提示
 }
 
-// 应用表达式到选中的图层缩放属性
+// 应用表达式到选中的图层缩放、位置和旋转属性
 function applyExpressionToSelectedLayers() {
     var comp = app.project.activeItem;
     if (!(comp && comp instanceof CompItem)) {
@@ -177,7 +190,7 @@ function applyExpressionToSelectedLayers() {
         return;
     }
     
-    app.beginUndoGroup("应用缩放表达式到选中的图层");
+    app.beginUndoGroup("应用表达式到选中的图层");
     
     // 如有其他自定义操作，可在此处添加代码
        
