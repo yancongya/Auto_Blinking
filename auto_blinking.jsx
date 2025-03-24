@@ -57,8 +57,9 @@ if (app.project.activeItem && app.project.activeItem instanceof CompItem && app.
                      "  var speed = thisComp.layer(\"Controller\").effect(\"旋转速度\")(\"滑块\");\n" +
                      "  var sl = thisComp.layer(\"Controller\").effect(\"种子控制\")(\"滑块\") * 1000;\n" +
                      "  seedRandom(sl + index, true);\n" +
+                     "  var direction = random(0, 1) > 0.5 ? 1 : -1;\n" +
                      "  var offset = random(0, 360);\n" +
-                     "  value + time * speed + offset;\n" +
+                     "  value + time * speed * direction + offset;\n" +
                      "}";
         layer.transform.rotation.expression = rotExpr;
     }
