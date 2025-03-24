@@ -162,6 +162,15 @@ function createController() {
                                                   "var scaleX = transform.scale[0] / 100; // 获取X轴缩放比例\n" +
                                                   "defaultValue * scaleX; // 根据缩放比例调整幅度值";
         }
+        
+        // 为"放大倍数"添加Y轴高度绑定表达式
+        var scaleEffect = effects.property("放大倍数");
+        if (scaleEffect && scaleEffect.property("滑块")) {
+            scaleEffect.property("滑块").expression = "// 通过Controller的Y轴缩放高度控制放大倍数\n" +
+                                                  "var defaultValue = 1; // 默认值\n" +
+                                                  "var scaleY = transform.scale[1] / 100; // 获取Y轴缩放比例\n" +
+                                                  "defaultValue * scaleY; // 根据Y轴缩放比例调整放大倍数";
+        }
     } catch (e) {
         // 出错时仅输出日志，不弹出提示框
         $.writeln("设置表达式时出错：" + e.toString());
